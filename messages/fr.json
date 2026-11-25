@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "title": "MiniGest — Soyez recontacté rapidement",
+    "description": "Laissez vos coordonnées : un conseiller MiniGest vous recontacte sous 24 h ouvrées.",
+    "adminTitle": "Administration"
+  },
+  "common": {
+    "brand": "MiniGest",
+    "skipToContent": "Aller au contenu principal",
+    "language": "Langue",
+    "theme": {
+      "label": "Thème",
+      "light": "Clair",
+      "dark": "Sombre",
+      "system": "Système"
+    },
+    "optional": "facultatif",
+    "required": "obligatoire",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "saving": "Enregistrement…",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "loading": "Chargement…",
+    "notFoundTitle": "Page introuvable",
+    "notFoundText": "La page demandée n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil",
+    "errorTitle": "Une erreur est survenue",
+    "errorText": "Veuillez réessayer. Si le problème persiste, contactez le support.",
+    "retry": "Réessayer"
+  },
+  "public": {
+    "nav": {
+      "privacy": "Confidentialité",
+      "admin": "Espace administrateur"
+    },
+    "hero": {
+      "eyebrow": "Accompagnement personnalisé",
+      "title": "Parlons de votre projet.",
+      "subtitle": "Laissez-nous vos coordonnées : un conseiller vous recontacte sous 24 heures ouvrées pour comprendre vos besoins.",
+      "points": {
+        "fast": "Réponse sous 24 h ouvrées",
+        "free": "Sans engagement, gratuit",
+        "privacy": "Données protégées (RGPD)"
+      }
+    },
+    "form": {
+      "title": "Demande de contact",
+      "subtitle": "Les champs marqués d'un astérisque (*) sont obligatoires.",
+      "fullName": "Nom complet",
+      "fullNamePlaceholder": "Ex. Awa Diallo",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "nom@exemple.com",
+      "phone": "Téléphone",
+      "phoneHint": "Format international recommandé, ex. +33 6 12 34 56 78",
+      "company": "Entreprise",
+      "message": "Votre message",
+      "messagePlaceholder": "Décrivez brièvement votre besoin…",
+      "consent": "J'accepte que mes données soient utilisées pour être recontacté(e), conformément à la <link>politique de confidentialité</link>.",
+      "submit": "Envoyer ma demande",
+      "submitting": "Envoi en cours…",
+      "errorSummary": "Le formulaire contient {count, plural, one {# erreur} other {# erreurs}}. Veuillez corriger les champs signalés.",
+      "rateLimited": "Trop de demandes. Veuillez réessayer dans quelques minutes.",
+      "serverError": "Le service est momentanément indisponible. Veuillez réessayer.",
+      "successTitle": "Merci, votre demande est bien reçue !",
+      "successText": "Un conseiller vous recontactera très prochainement à l'adresse indiquée.",
+      "newRequest": "Envoyer une autre demande",
+      "characters": "{count} / {max} caractères"
+    },
+    "footer": {
+      "rights": "© {year} MiniGest. Tous droits réservés.",
+      "privacy": "Politique de confidentialité"
+    }
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "updated": "Dernière mise à jour : {date}",
+    "sections": {
+      "dataTitle": "Données collectées",
+      "dataText": "Nom, adresse e-mail et, si vous les fournissez, téléphone, entreprise et message.",
+      "purposeTitle": "Finalité",
+      "purposeText": "Vos données servent uniquement à vous recontacter suite à votre demande. Elles ne sont ni vendues ni cédées.",
+      "retentionTitle": "Durée de conservation",
+      "retentionText": "Les données sont conservées 3 ans au maximum après le dernier contact.",
+      "rightsTitle": "Vos droits",
+      "rightsText": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et d'effacement. Pour l'exercer, répondez simplement à l'e-mail de notre conseiller."
+    }
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire.",
+    "fullNameTooShort": "Le nom doit contenir au moins 2 caractères.",
+    "emailInvalid": "Saisissez une adresse e-mail valide, ex. nom@exemple.com.",
+    "phoneInvalid": "Numéro invalide. Utilisez le format international, ex. +33 6 12 34 56 78.",
+    "consentRequired": "Votre accord est nécessaire pour traiter la demande.",
+    "tooLong": "Ce texte est trop long."
+  },
+  "auth": {
+    "title": "Connexion administrateur",
+    "subtitle": "Accès réservé au personnel autorisé.",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "submitting": "Connexion…",
+    "invalid": "Identifiants incorrects.",
+    "rateLimited": "Trop de tentatives. Réessayez dans 15 minutes.",
+    "logout": "Se déconnecter",
+    "backToSite": "Retour au site"
+  },
+  "admin": {
+    "nav": {
+      "label": "Navigation principale",
+      "dashboard": "Tableau de bord",
+      "leads": "Demandes",
+      "viewSite": "Voir le site",
+      "openMenu": "Ouvrir le menu",
+      "closeMenu": "Fermer le menu"
+    },
+    "signedInAs": "Connecté en tant que",
+    "dashboard": {
+      "title": "Tableau de bord",
+      "subtitle": "Vue d'ensemble des demandes de contact.",
+      "kpi": {
+        "total": "Demandes totales",
+        "pending": "À contacter",
+        "contacted": "Contactés",
+        "last7": "7 derniers jours",
+        "rate": "Taux de contact"
+      },
+      "chartTitle": "Demandes reçues — 14 derniers jours",
+      "chartSummary": "{total, plural, =0 {Aucune demande} one {# demande} other {# demandes}} sur la période.",
+      "queueTitle": "File d'attente",
+      "queueSubtitle": "Les demandes les plus anciennes non traitées.",
+      "queueEmpty": "Tout est à jour : aucune demande en attente.",
+      "seeAll": "Voir toutes les demandes"
+    },
+    "leads": {
+      "title": "Demandes",
+      "subtitle": "{total, plural, =0 {Aucune demande} one {# demande} other {# demandes}}",
+      "search": "Rechercher",
+      "searchPlaceholder": "Nom, e-mail ou entreprise…",
+      "status": "Statut",
+      "sort": "Trier par",
+      "filters": {
+        "all": "Tous",
+        "pending": "À contacter",
+        "contacted": "Contactés"
+      },
+      "sorts": {
+        "newest": "Plus récentes",
+        "oldest": "Plus anciennes",
+        "name": "Nom (A → Z)"
+      },
+      "export": "Exporter (CSV)",
+      "columns": {
+        "contacted": "Contacté",
+        "name": "Client",
+        "phone": "Téléphone",
+        "company": "Entreprise",
+        "received": "Reçue le",
+        "actions": "Actions"
+      },
+      "markContacted": "Marquer {name} comme contacté",
+      "view": "Voir la fiche",
+      "empty": "Aucune demande ne correspond à vos critères.",
+      "emptyAll": "Aucune demande pour le moment. Elles apparaîtront ici dès qu'un visiteur remplira le formulaire.",
+      "clearFilters": "Réinitialiser les filtres",
+      "pagination": {
+        "label": "Pagination",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "page": "Page {page} sur {count}"
+      }
+    },
+    "lead": {
+      "back": "Toutes les demandes",
+      "received": "Reçue {date}",
+      "contactInfo": "Coordonnées",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "company": "Entreprise",
+      "locale": "Langue",
+      "consent": "Consentement RGPD",
+      "message": "Message",
+      "noMessage": "Aucun message.",
+      "notProvided": "Non renseigné",
+      "status": "Suivi",
+      "contacted": "Client contacté",
+      "contactedHint": "Cochez lorsque le client a été joint.",
+      "contactedOn": "Contacté le {date} par {by}",
+      "pending": "En attente de contact",
+      "note": "Note interne",
+      "noteHint": "Visible uniquement par les administrateurs.",
+      "deleteTitle": "Supprimer cette demande ?",
+      "deleteText": "La fiche de {name} sera définitivement supprimée. Cette action est irréversible.",
+      "deleteConfirm": "Supprimer définitivement",
+      "sendEmail": "Envoyer un e-mail",
+      "call": "Appeler"
+    },
+    "status": {
+      "pending": "À contacter",
+      "contacted": "Contacté"
+    },
+    "toast": {
+      "contacted": "{name} marqué comme contacté.",
+      "uncontacted": "{name} remis en attente.",
+      "noteSaved": "Note enregistrée.",
+      "deleted": "Demande supprimée.",
+      "error": "L'opération a échoué. Veuillez réessayer."
+    }
+  }
+}
