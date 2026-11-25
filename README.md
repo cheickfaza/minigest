@@ -1,116 +1,64 @@
-# MiniGest — Gestion de clients en React (v1.1)
+# MiniGest v2
 
-Application de gestion de clients développée en **React 18**, conforme au cahier des charges
-v1.1 (niveaux 1, 2 et 3 — tests T01 à T18). Le fichier `index.html` est **totalement autonome** :
-React, ReactDOM et le code applicatif y sont intégrés — aucun `npm install`, aucun build,
-aucune dépendance externe au moment de l'exécution.
+Application full-stack de capture de prospects et de suivi client, avec **espace public** et **back-office administrateur séparé**.
 
-**Démo en ligne : https://minigest-ruby.vercel.app** · Code source : https://github.com/cheickfaza/minigest
+- **Démo en ligne** : https://minigest-ruby.vercel.app
+- **Code source** : https://github.com/cheickfaza/minigest
 
-![Aperçu](apercu.png)
+## Architecture
 
-## Fonctionnalités
-
-**Niveau 1 — gestion de base**
-- Ajout d'un client (nom, e-mail, téléphone facultatif)
-- Affichage complet de la liste (cartes avec initiales colorées)
-- Recherche en direct par nom, insensible à la casse
-- Suppression d'un client
-- Compteur du nombre total de clients
-
-**Niveau 2 — qualité des données**
-- Validation bloquante : nom de 2 à 60 caractères, e-mail au format valide, messages d'erreur sous chaque champ
-- Contrôle des doublons par e-mail, insensible à la casse
-- Sauvegarde automatique dans le navigateur (`localStorage`) — la liste survit au rechargement
-
-**Niveau 3 — évolutions v1.1**
-- **Édition d'une fiche** : bouton « Modifier », formulaire pré-rempli, mêmes règles de validation, l'e-mail de la fiche éditée n'est pas un doublon
-- **Tri de la liste** : nom (A → Z) ou ajout récent d'abord
-- **Statut « contacté »** : interrupteur sur chaque fiche + filtres Tous / Contactés / Non contactés
-- **Export / import CSV** : format `;` UTF-8 avec BOM (lisible dans Excel), validation ligne à ligne à l'import, doublons et lignes invalides ignorés avec bilan
-- **Suppression confirmée** : boîte de dialogue (fermeture par Échap) + bouton « Annuler » pendant 7 secondes dans le message, restauration à la place d'origine
-- **Tableau de bord** : 4 indicateurs (total, contactés, à contacter, ajouts sur 7 jours), graphique d'évolution sur 14 jours, barre de répartition
-- **Synchronisation serveur** : envoi automatique après chaque modification via `useEffect` (POST JSON), récupération à la demande (GET), badge d'état — *strictement optionnel*
-
-**Bonus UI/UX** : thème clair/sombre mémorisé, animations, notifications toast, accessible au clavier, 100 % responsive.
-
-## Format des fichiers CSV
-
-Entête : `id;nom;email;telephone;contacte;creeLe` — les champs contenant `;`, `"` ou un
-retour à la ligne sont entourés de guillemets. À l'import, l'application reconnaît les
-variantes d'entête (`name`, `mail`, `tel`, `date`…) et accepte `oui/true/1` pour le statut
-contacté. Les lignes au nom trop court, à l'e-mail invalide ou en doublon sont ignorées.
-
-## Synchronisation serveur (contrat d'API)
-
-Dans l'onglet **Tableau de bord**, renseignez l'adresse de votre API puis « Connecter » :
-
-| Verbe | Requête | Réponse attendue |
+| Couche | Technologies | Rôle |
 |---|---|---|
-| GET | `GET {url}` | `200` : `{ "clients": [ ... ] }` |
-| POST | `POST {url}` | corps `{ "clients": [...], "exportedAt": ISO }` → `200` |
+| Framework | Next.js 16 (App Router) + React 19 + TypeScript strict | Rendu serveur, Server Actions, séparation public / admin |
+| Base de données | Drizzle ORM + PostgreSQL (Neon en prod, PGlite embarqué en local) | Stockage partagé, migrations SQL versionnées (`drizzle/`) |
+| Authentification | `scrypt` (KDF) + JWT HS256 (`jose`) en cookie `HttpOnly` | Protection en profondeur (`proxy.ts` + `requireAdmin()`) |
+| Validation & i18n | Zod v4 + `libphonenumber-js` (E.164) + `next-intl` (FR / EN) | Contrôle partagé client/serveur, formats internationaux |
+| UI / UX | Tailwind CSS v4 + Lucide + WCAG 2.2 AA | Thème clair/sombre, navigation clavier, contrastes vérifiés |
+| Qualité | Vitest (tests unitaires + intégration Postgres), ESLint, `tsc` | `npm run check` |
 
-L'API doit autoriser l'origine de l'application (CORS). Sans URL configurée, **aucune
-requête n'est émise** : tout reste dans le navigateur. Un serveur d'essai est fourni dans
-`sources/mock_sync_server.py` (`python3 mock_sync_server.py 8798`).
+### Séparation Public / Admin
 
-## Tester en local
+- **Public (`/[locale]`, `/[locale]/privacy`)** : page d'accueil avec formulaire de demande de contact (validation stricte, numéro E.164, consentement RGPD, honeypot anti-spam, rate limiting). Les doublons d'e-mail sont acceptés silencieusement pour ne pas exposer la base.
+- **Admin (`/[locale]/admin/*`)** : accessible uniquement après authentification (`/admin/login`).
+  - Tableau de bord : indicateurs clés, taux de contact, graphique sur 14 jours, file d'attente des demandes les plus anciennes.
+  - Gestion des demandes : recherche, filtres (*Tous / À contacter / Contactés*), tri, pagination, **case « Contacté » réservée à l'admin** avec horodatage et traçabilité (`contactedAt`, `contactedBy`), notes internes, suppression confirmée, export CSV (RFC 4180 + protection OWASP contre l'injection de formules).
 
-Aucune installation : ouvrez simplement `index.html` dans un navigateur récent.
+## Démarrage en local
 
-## Déployer sur Vercel
+Aucune installation de PostgreSQL n'est requise : en local sans `DATABASE_URL`, MiniGest utilise **PGlite** (PostgreSQL embarqué dans `.data/pglite`).
 
-L'application est un site statique : Vercel l'héberge gratuitement.
+```bash
+npm install
+cp .env.example .env.local
+```
 
-1. **Glisser-déposer** : ouvrez [vercel.com/new](https://vercel.com/new) et déposez le dossier `minigest` entier → URL en ~30 secondes.
-2. **CLI** : `cd minigest && npx vercel --prod`
-3. **GitHub** : poussez le dossier puis importez le dépôt sur [vercel.com/new](https://vercel.com/new) — chaque `git push` redéploie.
+Générez un hash de mot de passe et un secret de session dans `.env.local` :
 
-## Fichiers
+```bash
+npm run admin:hash -- "mon-mot-de-passe-robuste"
+openssl rand -base64 48
+```
 
-| Fichier | Rôle |
-|---|---|
-| `index.html` | L'application complète (React inclus) — le seul fichier nécessaire |
-| `apercu.png` | Capture d'écran de l'interface |
-| `README.md` | Ce fichier |
-| `sources/` | Code source de développement (voir ci-dessous) |
+Initialisez la base, ajoutez des données d'exemple et lancez le serveur :
 
-## Modifier l'application (dossier `sources/`)
+```bash
+npm run db:migrate
+npm run db:seed
+npm run dev
+```
 
-`index.html` est généré à partir de sources lisibles : `sources/app.js` (l'application
-React : composants, validation, CSV, synchronisation, tableau de bord), `sources/style.css`
-(le design), `sources/page.html` (la coquille HTML) et `sources/build.js` (l'assembleur
-qui intègre React en dur). Pour modifier l'interface :
+- Site public : http://localhost:3000/fr (ou `/en`)
+- Back-office admin : http://localhost:3000/fr/admin
 
-1. Éditez `sources/app.js` ou `sources/style.css`
-2. Installez les dépendances une seule fois : `cd sources && npm install`
-3. Reconstruisez : `node sources/build.js` → il réécrit `index.html` (autonome)
+## Vérifications
 
-## Données et confidentialité
+```bash
+npm run check   # typecheck + lint + tests (unitaires & intégration Postgres)
+npm run build   # migrations + build de production Next.js
+```
 
-Les clients sont enregistrés sous la clé `minigest.clients.v1` du `localStorage`.
-Rien n'est envoyé sur Internet tant qu'aucune API n'est configurée ; effacer les données
-de navigation du navigateur supprime la liste.
+## Déploiement sur Vercel + Neon
 
-## Vérification — campagne T01 à T18
-
-| Test | Comment vérifier dans l'application | Statut |
-|---|---|---|
-| T01 Ajout | Remplir nom + e-mail valides → « Ajouter le client » | Validé |
-| T02 Affichage | Ajouter 2 clients : initiales, e-mail, téléphone visibles | Validé |
-| T03 Recherche | Taper « dial » : la liste filtre à chaque frappe | Validé |
-| T04 Sans résultat | Taper « zzz » : message « Aucun résultat » | Validé |
-| T05 Suppression | Icône poubelle → boîte de confirmation → disparition | Validé |
-| T06 Total | Le compteur (en-tête + barre) suit chaque opération | Validé |
-| T07 Validation | Soumettre vide / e-mail sans « @ » → messages d'erreur | Validé |
-| T08 Doublons | Ré-ajouter un e-mail existant (même en majuscules) → refus | Validé |
-| T09 Persistance | Ajouter puis recharger la page (F5) → liste intacte | Validé |
-| T10 Isolation | Ouvrir dans un navigateur neuf → liste vide | Validé |
-| T11 Édition | Icône crayon → formulaire pré-rempli → « Enregistrer les modifications » | Validé |
-| T12 Doublon à l'édition | E-mail d'un autre client → refus ; e-mail de la fiche → accepté | Validé |
-| T13 Tri | Sélecteur « Nom (A → Z) » puis « Ajout récent d'abord » | Validé |
-| T14 Statut + filtre | Interrupteur « Contacté » puis filtres Contactés / Non contactés | Validé |
-| T15 Export CSV | Bouton télécharger → fichier `minigest_clients_date.csv` avec BOM | Validé |
-| T16 Import CSV | Importer un fichier mixte → seuls les valides et nouveaux sont ajoutés | Validé |
-| T17 Annulation | Supprimer puis « Annuler » dans le toast → client restauré | Validé |
-| T18 Dashboard + sync | Onglet Tableau de bord ; connecter une API → badge « Synchronisé » | Validé |
+1. Connectez une base **Neon Postgres** au projet Vercel (variable `DATABASE_URL`).
+2. Configurez `ADMIN_EMAIL`, `ADMIN_PASSWORD_HASH` et `SESSION_SECRET` dans les variables d'environnement Vercel.
+3. Déployez (`git push` ou `npx vercel --prod`) : `npm run build` applique automatiquement les migrations avant de construire l'application.

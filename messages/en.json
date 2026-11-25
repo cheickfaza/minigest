@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "title": "MiniGest — Get a call back quickly",
+    "description": "Leave your details: a MiniGest advisor will get back to you within one business day.",
+    "adminTitle": "Administration"
+  },
+  "common": {
+    "brand": "MiniGest",
+    "skipToContent": "Skip to main content",
+    "language": "Language",
+    "theme": {
+      "label": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "optional": "optional",
+    "required": "required",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saving": "Saving…",
+    "delete": "Delete",
+    "back": "Back",
+    "loading": "Loading…",
+    "notFoundTitle": "Page not found",
+    "notFoundText": "The page you are looking for does not exist or has been moved.",
+    "backHome": "Back to home",
+    "errorTitle": "Something went wrong",
+    "errorText": "Please try again. If the problem persists, contact support.",
+    "retry": "Try again"
+  },
+  "public": {
+    "nav": {
+      "privacy": "Privacy",
+      "admin": "Admin area"
+    },
+    "hero": {
+      "eyebrow": "Personalised support",
+      "title": "Let's talk about your project.",
+      "subtitle": "Leave us your details: an advisor will get back to you within one business day to understand your needs.",
+      "points": {
+        "fast": "Reply within one business day",
+        "free": "Free, no commitment",
+        "privacy": "Data protected (GDPR)"
+      }
+    },
+    "form": {
+      "title": "Contact request",
+      "subtitle": "Fields marked with an asterisk (*) are required.",
+      "fullName": "Full name",
+      "fullNamePlaceholder": "e.g. Jane Smith",
+      "email": "Email address",
+      "emailPlaceholder": "name@example.com",
+      "phone": "Phone",
+      "phoneHint": "International format recommended, e.g. +1 202 555 0143",
+      "company": "Company",
+      "message": "Your message",
+      "messagePlaceholder": "Briefly describe what you need…",
+      "consent": "I agree that my data may be used to contact me, in accordance with the <link>privacy policy</link>.",
+      "submit": "Send my request",
+      "submitting": "Sending…",
+      "errorSummary": "The form contains {count, plural, one {# error} other {# errors}}. Please fix the highlighted fields.",
+      "rateLimited": "Too many requests. Please try again in a few minutes.",
+      "serverError": "The service is temporarily unavailable. Please try again.",
+      "successTitle": "Thank you, we have received your request!",
+      "successText": "An advisor will contact you shortly at the address you provided.",
+      "newRequest": "Send another request",
+      "characters": "{count} / {max} characters"
+    },
+    "footer": {
+      "rights": "© {year} MiniGest. All rights reserved.",
+      "privacy": "Privacy policy"
+    }
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: {date}",
+    "sections": {
+      "dataTitle": "Data we collect",
+      "dataText": "Name, email address and, if provided, phone number, company and message.",
+      "purposeTitle": "Purpose",
+      "purposeText": "Your data is used solely to get back to you about your request. It is never sold or shared.",
+      "retentionTitle": "Retention",
+      "retentionText": "Data is kept for a maximum of 3 years after the last contact.",
+      "rightsTitle": "Your rights",
+      "rightsText": "Under the GDPR you have the right to access, rectify and erase your data. To exercise it, simply reply to our advisor's email."
+    }
+  },
+  "validation": {
+    "required": "This field is required.",
+    "fullNameTooShort": "Name must be at least 2 characters long.",
+    "emailInvalid": "Enter a valid email address, e.g. name@example.com.",
+    "phoneInvalid": "Invalid number. Use the international format, e.g. +1 202 555 0143.",
+    "consentRequired": "Your consent is required to process the request.",
+    "tooLong": "This text is too long."
+  },
+  "auth": {
+    "title": "Administrator sign-in",
+    "subtitle": "Restricted to authorised staff.",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Sign in",
+    "submitting": "Signing in…",
+    "invalid": "Invalid credentials.",
+    "rateLimited": "Too many attempts. Try again in 15 minutes.",
+    "logout": "Sign out",
+    "backToSite": "Back to website"
+  },
+  "admin": {
+    "nav": {
+      "label": "Main navigation",
+      "dashboard": "Dashboard",
+      "leads": "Requests",
+      "viewSite": "View website",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu"
+    },
+    "signedInAs": "Signed in as",
+    "dashboard": {
+      "title": "Dashboard",
+      "subtitle": "Overview of contact requests.",
+      "kpi": {
+        "total": "Total requests",
+        "pending": "To contact",
+        "contacted": "Contacted",
+        "last7": "Last 7 days",
+        "rate": "Contact rate"
+      },
+      "chartTitle": "Requests received — last 14 days",
+      "chartSummary": "{total, plural, =0 {No requests} one {# request} other {# requests}} over the period.",
+      "queueTitle": "Queue",
+      "queueSubtitle": "Oldest requests not yet handled.",
+      "queueEmpty": "All caught up: no pending requests.",
+      "seeAll": "See all requests"
+    },
+    "leads": {
+      "title": "Requests",
+      "subtitle": "{total, plural, =0 {No requests} one {# request} other {# requests}}",
+      "search": "Search",
+      "searchPlaceholder": "Name, email or company…",
+      "status": "Status",
+      "sort": "Sort by",
+      "filters": {
+        "all": "All",
+        "pending": "To contact",
+        "contacted": "Contacted"
+      },
+      "sorts": {
+        "newest": "Newest first",
+        "oldest": "Oldest first",
+        "name": "Name (A → Z)"
+      },
+      "export": "Export (CSV)",
+      "columns": {
+        "contacted": "Contacted",
+        "name": "Client",
+        "phone": "Phone",
+        "company": "Company",
+        "received": "Received",
+        "actions": "Actions"
+      },
+      "markContacted": "Mark {name} as contacted",
+      "view": "View details",
+      "empty": "No requests match your criteria.",
+      "emptyAll": "No requests yet. They will appear here as soon as a visitor fills in the form.",
+      "clearFilters": "Clear filters",
+      "pagination": {
+        "label": "Pagination",
+        "previous": "Previous",
+        "next": "Next",
+        "page": "Page {page} of {count}"
+      }
+    },
+    "lead": {
+      "back": "All requests",
+      "received": "Received {date}",
+      "contactInfo": "Contact details",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "locale": "Language",
+      "consent": "GDPR consent",
+      "message": "Message",
+      "noMessage": "No message.",
+      "notProvided": "Not provided",
+      "status": "Follow-up",
+      "contacted": "Client contacted",
+      "contactedHint": "Tick once the client has been reached.",
+      "contactedOn": "Contacted on {date} by {by}",
+      "pending": "Awaiting contact",
+      "note": "Internal note",
+      "noteHint": "Visible to administrators only.",
+      "deleteTitle": "Delete this request?",
+      "deleteText": "{name}'s record will be permanently deleted. This action cannot be undone.",
+      "deleteConfirm": "Delete permanently",
+      "sendEmail": "Send email",
+      "call": "Call"
+    },
+    "status": {
+      "pending": "To contact",
+      "contacted": "Contacted"
+    },
+    "toast": {
+      "contacted": "{name} marked as contacted.",
+      "uncontacted": "{name} moved back to pending.",
+      "noteSaved": "Note saved.",
+      "deleted": "Request deleted.",
+      "error": "The operation failed. Please try again."
+    }
+  }
+}
